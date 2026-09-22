@@ -1,0 +1,4 @@
+feature,model,current_monthly,lever,title,save_low,save_high,needs_test
+All traffic on claude-sonnet-4-6-20260115,claude-sonnet-4-6-20260115,5234.11,model,Move claude-sonnet-4-6 → claude-sonnet-5,1744.7,1744.7,False
+All traffic on claude-sonnet-4-6-20260115,claude-sonnet-4-6-20260115,5234.11,cache,Cache the repeated prompt prefix,0.0,703.1,False
+All traffic on claude-haiku-4-5-20251001,claude-haiku-4-5-20251001,484.42,cache,Cache the repeated prompt prefix,0.0,128.82,False

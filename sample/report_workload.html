@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Cost Audit · Sample AI startup (synthetic data)</title>
+<style>
+:root{--ink:#101828;--muted:#667085;--line:#e4e7ec;--brand:#3b2f8f;--brand-bg:#f4f3ff;--good:#067647;--good-bg:#ecfdf3;--warn:#b54708;--warn-bg:#fffaeb}
+*{box-sizing:border-box} body{margin:0;color:var(--ink);font:14px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff}
+main{max-width:1040px;margin:0 auto;padding:32px 16px 48px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--brand);font-weight:700;letter-spacing:.02em}
+.mark{width:26px;height:26px;border-radius:7px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:14px}
+h1{font-size:26px;margin:14px 0 4px} h2{font-size:16px;margin:32px 0 10px}
+.sub,.muted{color:var(--muted)} .small{font-size:12px;margin:6px 0 0;padding-left:16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:16px}
+.tile b{display:block;font-size:28px;line-height:1.15;font-variant-numeric:tabular-nums}
+.tile.good{background:var(--good-bg);border-color:#abefc6} .tile.good b{color:var(--good)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:820px}
+th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);background:#f9fafb}
+tr:last-child td{border-bottom:none} .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+ul.levers{margin:0;padding-left:16px} ul.levers li{margin-bottom:8px}
+.amt{display:inline-block;margin-left:6px;color:var(--good);font-weight:600;font-size:12px}
+.tag{display:inline-block;padding:1px 7px;border-radius:99px;background:var(--warn-bg);color:var(--warn);font-size:11px;font-weight:600}
+.box{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:#fcfcfd}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+@media print{main{padding:0} .table-wrap{border:none} tr{break-inside:avoid}}
+</style></head><body><main>
+<div class="brand"><span class="mark">P</span>PANTHEON SOLUTIONS</div>
+<h1>AI API Cost Audit</h1>
+<p class="sub">Sample AI startup (synthetic data) · prepared September 22, 2026 · prices as of 2026-09-22</p>
+
+<div class="tiles">
+  <div class="tile"><b>$11,202</b><span class="muted">estimated monthly LLM spend</span></div>
+  <div class="tile good"><b>$5,760–$7,779</b><span class="muted">estimated monthly savings (51%–69%)</span></div>
+  <div class="tile"><b>$69,125–$93,350</b><span class="muted">per year at today's volume</span></div>
+</div>
+
+<h2>Where the money goes, and what to change</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Workload</th><th class=num>Now / mo</th><th>Changes</th><th class=num>Saves / mo</th></tr></thead>
+<tbody>
+      <tr>
+        <td><b>Ticket tagging</b><br><span class=muted>claude-sonnet-4-6
+          · 240,000 calls/mo · 1,900 in / 650 out tokens</span>
+          </td>
+        <td class=num>$3,708</td>
+        <td><ul class=levers><li><b>Try claude-haiku-4-5 instead of claude-sonnet-4-6</b> <span class=tag>needs quality test</span><br><span class=muted>Move claude-sonnet-4-6 → claude-sonnet-5 now (same class, lower price). &#x27;classification&#x27; work is often handled well by a small model; claude-haiku-4-5 is counted only in the optimistic estimate until it passes a quality test on your own examples.</span><span class=amt>$1,236–$2,472/mo</span></li><li><b>Cache the repeated prompt prefix</b><br><span class=muted>Put the fixed part (system prompt, tool definitions, reference docs) first and mark it cacheable. </span><span class=amt>$226–$320/mo</span></li><li><b>Send through the Batch API</b><br><span class=muted>Nobody is waiting on these calls, so they can run within 24 hours at half price.</span><span class=amt>$505–$1,076/mo</span></li><li><b>Shorten outputs</b><br><span class=muted>650 output tokens per call is long for classification. Ask for JSON with only the needed fields and set max_tokens; output costs 5× input.</span></li></ul></td>
+        <td class=num><b>$2,632–$3,203</b></td>
+      </tr>
+      <tr>
+        <td><b>Support chat assistant</b><br><span class=muted>claude-sonnet-4-6
+          · 180,000 calls/mo · 6,200 in / 420 out tokens</span>
+          </td>
+        <td class=num>$4,482</td>
+        <td><ul class=levers><li><b>Move claude-sonnet-4-6 → claude-sonnet-5</b><br><span class=muted>Newer model in the same class at a lower price. Run your own eval before switching; behaviour can change between versions.</span><span class=amt>$1,494/mo</span></li><li><b>Cache the repeated prompt prefix</b><br><span class=muted>Put the fixed part (system prompt, tool definitions, reference docs) first and mark it cacheable. </span><span class=amt>$759–$1,074/mo</span></li></ul></td>
+        <td class=num><b>$2,253–$2,568</b></td>
+      </tr>
+      <tr>
+        <td><b>Contract clause extraction</b><br><span class=muted>claude-opus-4-8
+          · 12,000 calls/mo · 24,000 in / 1,100 out tokens</span>
+          </td>
+        <td class=num>$1,770</td>
+        <td><ul class=levers><li><b>Try claude-haiku-4-5 instead of claude-opus-4-8</b> <span class=tag>needs quality test</span><br><span class=muted>Move claude-opus-4-8 → claude-opus-5-5 now (same class, lower price). &#x27;extraction&#x27; work is often handled well by a small model; claude-haiku-4-5 is counted only in the optimistic estimate until it passes a quality test on your own examples.</span><span class=amt>$354–$1,416/mo</span></li><li><b>Cache the repeated prompt prefix</b><br><span class=muted>Put the fixed part (system prompt, tool definitions, reference docs) first and mark it cacheable. </span><span class=amt>$24–$71/mo</span></li><li><b>Shorten outputs</b><br><span class=muted>1,100 output tokens per call is long for extraction. Ask for JSON with only the needed fields and set max_tokens; output costs 5× input.</span></li></ul></td>
+        <td class=num><b>$425–$1,440</b></td>
+      </tr>
+      <tr>
+        <td><b>Nightly account summaries</b><br><span class=muted>gpt-6-sol
+          · 30,000 calls/mo · 9,000 in / 700 out tokens</span>
+          </td>
+        <td class=num>$750</td>
+        <td><ul class=levers><li><b>Cache the repeated prompt prefix</b><br><span class=muted>OpenAI caches automatically once the fixed part comes first and is ≥1,024 tokens; move anything that changes per request (dates, user names) after it. Estimate assumes ~40% of input is fixed; a sample prompt would firm this up.</span><span class=amt>$0–$175/mo</span></li><li><b>Send through the Batch API</b><br><span class=muted>Nobody is waiting on these calls, so they can run within 24 hours at half price.</span><span class=amt>$288–$375/mo</span></li></ul></td>
+        <td class=num><b>$375–$462</b></td>
+      </tr>
+      <tr>
+        <td><b>Coding agent (internal)</b><br><span class=muted>claude-opus-5-5
+          · 4,000 calls/mo · 30,000 in / 3,000 out tokens</span>
+          </td>
+        <td class=num>$492</td>
+        <td><ul class=levers><li><b>Cache the repeated prompt prefix</b><br><span class=muted>Put the fixed part (system prompt, tool definitions, reference docs) first and mark it cacheable. </span><span class=amt>$76–$106/mo</span></li></ul></td>
+        <td class=num><b>$76–$106</b></td>
+      </tr></tbody></table></div>
+
+<h2>How to read the range</h2>
+<div class="box"><ul>
+<li><b>Low end</b> counts only the safer changes: newer models of the same class at a lower price (still worth a quick check), caching of prompt parts you've told us are fixed, and Batch for work nobody waits on.</li>
+<li><b>High end</b> adds moves to a smaller model and caching we estimated without seeing your prompts. Those are marked <span class=tag>needs quality test</span>: we run 50–200 of your real examples through both models and you compare the answers before anything changes.</li>
+<li>Costs are recomputed from token counts at list prices. Discounts, credits and committed-use deals aren't included.</li>
+</ul></div>
+
+
+<h2>Next step</h2>
+<div class="box">Pick the one or two biggest rows above. We'll run the quality test on a sample you choose (with personal data removed) and send a side-by-side comparison. You decide what ships; nothing touches your production code or keys.</div>
+
+<footer>Pantheon Solutions · AI cost audit. We never ask for API keys or customer data. Usage files are used only to prepare this report and deleted afterwards.</footer>
+</main></body></html>

@@ -1,0 +1,13 @@
+feature,model,current_monthly,lever,title,save_low,save_high,needs_test
+Support chat assistant,claude-sonnet-4-6,4482.0,model,Move claude-sonnet-4-6 → claude-sonnet-5,1494.0,1494.0,False
+Support chat assistant,claude-sonnet-4-6,4482.0,cache,Cache the repeated prompt prefix,759.24,1073.88,False
+Ticket tagging,claude-sonnet-4-6,3708.0,model,Try claude-haiku-4-5 instead of claude-sonnet-4-6,1236.0,2472.0,True
+Ticket tagging,claude-sonnet-4-6,3708.0,cache,Cache the repeated prompt prefix,319.68,226.08,False
+Ticket tagging,claude-sonnet-4-6,3708.0,batch,Send through the Batch API,1076.16,504.96,False
+Ticket tagging,claude-sonnet-4-6,3708.0,output,Shorten outputs,0.0,0.0,False
+Nightly account summaries,gpt-6-sol,750.0,cache,Cache the repeated prompt prefix,0.0,174.96,False
+Nightly account summaries,gpt-6-sol,750.0,batch,Send through the Batch API,375.0,287.52,False
+Contract clause extraction,claude-opus-4-8,1770.0,model,Try claude-haiku-4-5 instead of claude-opus-4-8,354.0,1416.0,True
+Contract clause extraction,claude-opus-4-8,1770.0,cache,Cache the repeated prompt prefix,70.8,23.55,False
+Contract clause extraction,claude-opus-4-8,1770.0,output,Shorten outputs,0.0,0.0,False
+Coding agent (internal),claude-opus-5-5,492.0,cache,Cache the repeated prompt prefix,75.52,106.24,False

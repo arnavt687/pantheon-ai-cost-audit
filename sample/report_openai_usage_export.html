@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Cost Audit · Sample AI startup (synthetic data)</title>
+<style>
+:root{--ink:#101828;--muted:#667085;--line:#e4e7ec;--brand:#3b2f8f;--brand-bg:#f4f3ff;--good:#067647;--good-bg:#ecfdf3;--warn:#b54708;--warn-bg:#fffaeb}
+*{box-sizing:border-box} body{margin:0;color:var(--ink);font:14px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff}
+main{max-width:1040px;margin:0 auto;padding:32px 16px 48px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--brand);font-weight:700;letter-spacing:.02em}
+.mark{width:26px;height:26px;border-radius:7px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:14px}
+h1{font-size:26px;margin:14px 0 4px} h2{font-size:16px;margin:32px 0 10px}
+.sub,.muted{color:var(--muted)} .small{font-size:12px;margin:6px 0 0;padding-left:16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:16px}
+.tile b{display:block;font-size:28px;line-height:1.15;font-variant-numeric:tabular-nums}
+.tile.good{background:var(--good-bg);border-color:#abefc6} .tile.good b{color:var(--good)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:820px}
+th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);background:#f9fafb}
+tr:last-child td{border-bottom:none} .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+ul.levers{margin:0;padding-left:16px} ul.levers li{margin-bottom:8px}
+.amt{display:inline-block;margin-left:6px;color:var(--good);font-weight:600;font-size:12px}
+.tag{display:inline-block;padding:1px 7px;border-radius:99px;background:var(--warn-bg);color:var(--warn);font-size:11px;font-weight:600}
+.box{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:#fcfcfd}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+@media print{main{padding:0} .table-wrap{border:none} tr{break-inside:avoid}}
+</style></head><body><main>
+<div class="brand"><span class="mark">P</span>PANTHEON SOLUTIONS</div>
+<h1>AI API Cost Audit</h1>
+<p class="sub">Sample AI startup (synthetic data) · prepared September 22, 2026 · prices as of 2026-09-22</p>
+
+<div class="tiles">
+  <div class="tile"><b>$3,287</b><span class="muted">estimated monthly LLM spend</span></div>
+  <div class="tile good"><b>$40–$822</b><span class="muted">estimated monthly savings (1%–25%)</span></div>
+  <div class="tile"><b>$479–$9,859</b><span class="muted">per year at today's volume</span></div>
+</div>
+
+<h2>Where the money goes, and what to change</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Workload</th><th class=num>Now / mo</th><th>Changes</th><th class=num>Saves / mo</th></tr></thead>
+<tbody>
+      <tr>
+        <td><b>All traffic on gpt-6-sol</b><br><span class=muted>gpt-6-sol
+          · 242,418 calls/mo · 4,976 in / 439 out tokens</span>
+          </td>
+        <td class=num>$3,149</td>
+        <td><ul class=levers><li><b>Cache the repeated prompt prefix</b><br><span class=muted>OpenAI caches automatically once the fixed part comes first and is ≥1,024 tokens; move anything that changes per request (dates, user names) after it. Estimate assumes ~40% of input is fixed; a sample prompt would firm this up.</span><span class=amt>$0–$782/mo</span></li></ul></td>
+        <td class=num><b>$0–$782</b></td>
+      </tr>
+      <tr>
+        <td><b>All traffic on gpt-4o-mini-2024-07-18</b><br><span class=muted>gpt-4o-mini-2024-07-18
+          · 616,874 calls/mo · 1,099 in / 98 out tokens</span>
+          </td>
+        <td class=num>$138</td>
+        <td><ul class=levers><li><b>Move gpt-4o-mini → gpt-6-luna</b><br><span class=muted>Newer model in the same class at a lower price. Run your own eval before switching; behaviour can change between versions.</span><span class=amt>$40/mo</span></li></ul></td>
+        <td class=num><b>$40–$40</b></td>
+      </tr></tbody></table></div>
+
+<h2>How to read the range</h2>
+<div class="box"><ul>
+<li><b>Low end</b> counts only changes that don't alter output quality in a measurable way: newer same-class models at a lower price, caching of prompt parts you've told us are fixed, and Batch for work nobody waits on.</li>
+<li><b>High end</b> adds moves to a smaller model and caching we estimated without seeing your prompts. Those are marked <span class=tag>needs quality test</span>: we run 50–200 of your real examples through both models and you compare the answers before anything changes.</li>
+<li>Costs are recomputed from token counts at list prices. Discounts, credits and committed-use deals aren't included.</li>
+</ul></div>
+<h2>Data notes</h2><ul class=muted><li>Some legacy OpenAI prices come from a third-party tracker; check them against your bill.</li></ul>
+
+<h2>Next step</h2>
+<div class="box">Pick the one or two biggest rows above. We'll run the quality test on a sample you choose (with personal data removed) and send a side-by-side comparison. You decide what ships; nothing touches your production code or keys.</div>
+
+<footer>Pantheon Solutions · AI cost audit. We never ask for API keys or customer data. Usage files are used only to prepare this report and deleted afterwards.</footer>
+</main></body></html>

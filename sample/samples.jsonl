@@ -1,0 +1,5 @@
+{"id": "t1", "system": "Tag the support ticket with one of: billing, bug, how-to, account, other. Reply with the tag only.", "input": "I was charged twice for my subscription this month.", "expected": "billing"}
+{"id": "t2", "system": "Tag the support ticket with one of: billing, bug, how-to, account, other. Reply with the tag only.", "input": "The export button does nothing when I click it in Firefox.", "expected": "bug"}
+{"id": "t3", "system": "Tag the support ticket with one of: billing, bug, how-to, account, other. Reply with the tag only.", "input": "How do I add a teammate to my workspace?", "expected": "how-to"}
+{"id": "t4", "system": "Tag the support ticket with one of: billing, bug, how-to, account, other. Reply with the tag only.", "input": "Please change the email on my login to my new work address.", "expected": "account"}
+{"id": "t5", "system": "Tag the support ticket with one of: billing, bug, how-to, account, other. Reply with the tag only.", "input": "Love the product, just wanted to say thanks!", "expected": "other"}

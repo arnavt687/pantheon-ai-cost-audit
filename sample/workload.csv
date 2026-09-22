@@ -1,0 +1,6 @@
+feature,model,requests_per_month,avg_input_tokens,avg_output_tokens,task_type,latency_sensitive,static_prefix_tokens,cached_input_share,monthly_cost
+Support chat assistant,claude-sonnet-4-6,180000,6200,420,support,yes,3800,0,
+Ticket tagging,claude-sonnet-4-6,240000,1900,650,classification,no,1200,0,
+Nightly account summaries,gpt-6-sol,30000,9000,700,summarization,no,,0,
+Contract clause extraction,claude-opus-4-8,12000,24000,1100,extraction,yes,2500,0,
+Coding agent (internal),claude-opus-5-5,4000,30000,3000,agent,yes,8000,0.5,
